@@ -1,13 +1,17 @@
 const express = require("express");
-const pool = require("./db/db");
-
 const app = express();
+const path = require("path");
+const indexRouter = require("./routes/indexRouter");
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/", indexRouter);
+
 const port = 3000;
-
-app.get("/", (req, res) => {
-  res.send("inventory application");
-});
-
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
