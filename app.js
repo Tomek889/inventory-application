@@ -12,10 +12,10 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", indexRouter);
 app.use("/players", playersRouter);
 app.use("/coaches", coachesRouter);
 app.use("/clubs", clubsRouter);
+app.use("/", indexRouter);
 
 const port = 3000;
 app.listen(port, () => {
