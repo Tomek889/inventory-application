@@ -1,0 +1,14 @@
+<h2>Coaching Staff</h2>
+<p>
+  Here's a list of all the coaches in the system. You can check their roles,
+  ages, and which clubs they belong to.
+</p>
+<p>
+  Want to bring in a new strategist or assistant? Add a new coach to the
+  database below.
+</p>
+<ul class="coachesList">
+  <% coaches.forEach(coach => { %>
+  <li><%= coach.name %> — Role: <%= coach.role %> — Age: <%= coach.age %></li>
+  <% }) %>
+</ul>

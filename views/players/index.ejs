@@ -1,0 +1,17 @@
+<h2>Players</h2>
+<p>
+  View the list of all registered players across various clubs. See their
+  positions, ages, and affiliated clubs.
+</p>
+<p>
+  Need to add a new player to your team? Just hit the "Add Player" button and
+  get started.
+</p>
+<ul class="playersList">
+  <% players.forEach(player => { %>
+  <li>
+    <%= player.name %> — Position: <%= player.position %> — Age: <%= player.age
+    %>
+  </li>
+  <% }) %>
+</ul>

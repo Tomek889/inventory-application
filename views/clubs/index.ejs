@@ -1,0 +1,17 @@
+<h2>Football Clubs</h2>
+<p>
+  Explore all the clubs currently managed in the system. You can view each
+  club's details, including its founding year, home stadium, and country.
+</p>
+<p>
+  Want to add a new club? Click the button below and keep building the football
+  world.
+</p>
+<ul class="clubsList">
+  <% clubs.forEach(club => { %>
+  <li>
+    <%= club.name %> — Founded Year: <%= club.founded_year %> — Stadium: <%=
+    club.stadium_name %>
+  </li>
+  <% }) %>
+</ul>

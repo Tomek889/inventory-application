@@ -1,5 +1,10 @@
 const pool = require("../db/db");
 
+async function getNumOfAllClubs() {
+  const result = await pool.query("SELECT COUNT(*) FROM clubs");
+  return parseInt(result.rows[0]?.count || 0);
+}
+
 async function getAllClubs() {
   const result = await pool.query("SELECT * FROM clubs");
   return result.rows;
@@ -11,6 +16,7 @@ async function getClubById(id) {
 }
 
 module.exports = {
+  getNumOfAllClubs,
   getAllClubs,
   getClubById,
 };
