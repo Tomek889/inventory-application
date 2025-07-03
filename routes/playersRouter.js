@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const playersRouter = Router();
+const playersDB = require("../models/players");
 
-playersRouter.get("/", (req, res) => {
+playersRouter.get("/", async (req, res) => {
   res.send("players");
 });
 
