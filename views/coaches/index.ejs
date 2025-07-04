@@ -7,6 +7,9 @@
   Want to bring in a new strategist or assistant? Add a new coach to the
   database below.
 </p>
+<a href="/coaches/new">
+  <button>Add New Coach</button>
+</a>
 <ul class="coachesList">
   <% coaches.forEach(coach => { %>
   <li><%= coach.name %> — Role: <%= coach.role %> — Age: <%= coach.age %></li>

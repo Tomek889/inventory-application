@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const coachesRouter = Router();
 const coachesDB = require("../models/coaches");
+const clubsDB = require("../models/clubs");
 
 coachesRouter.get("/", async (req, res) => {
   try {
@@ -15,56 +16,64 @@ coachesRouter.get("/", async (req, res) => {
   }
 });
 
-coachesRouter.get("/new", (req, res) => {
-  res.render("coaches/create", { title: "Add New Coach" });
+coachesRouter.get("/new", async (req, res) => {
+  const clubs = await clubsDB.getAllClubs();
+  res.render("coaches/create", { title: "Add New Coach", clubs: clubs });
 });
 
 coachesRouter.post("/", async (req, res) => {
   try {
     const { name, role, age, club_id } = req.body;
-    await clubsDB.createClub({ name, founded_year, stadium_name, country });
-    res.redirect("clubs");
+    await coachesDB.createCoach({ name, role, age, club_id });
+    res.redirect("/coaches");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating club");
+    res.status(500).send("Error creating coach");
   }
 });
 
 coachesRouter.get("/:id/edit", async (req, res) => {
   try {
-    const club = await clubsDB.getClubById(req.params.id);
-    if (!club) {
-      return res.status(404).send("Club not found");
+    const coach = await coachesDB.getCoachById(req.params.id);
+    const clubs = await clubsDB.getAllClubs();
+    if (!coach) {
+      return res.status(404).send("Coach not found");
     }
-    res.render("clubs/edit", { title: "Edit club", club: club });
+    res.render("coaches/edit", {
+      title: "Edit Coach",
+      coach: coach,
+      clubs: clubs,
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error fetching club");
+    res.status(500).send("Error fetching coach");
   }
 });
 
 coachesRouter.post("/:id", async (req, res) => {
   try {
-    const { name, founded_year, stadium_name, country } = req.body;
-    await clubsDB.editClub({
+    const { name, role, age, club_id } = req.body;
+    await coachesDB.editCoach({
       id: req.params.id,
       name: name,
-      founded_year: founded_year,
-      stadium_name: stadium_name,
-      country: country,
+      role: role,
+      age: age,
+      club_id: club_id,
     });
-    res.redirect("/clubs");
-  } catch (err) {}
-  res.redirect("/");
+    res.redirect("/coaches");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error editing coach");
+  }
 });
 
 coachesRouter.post("/:id/delete", async (req, res) => {
   try {
-    await clubsDB.deleteClub(req.params.id);
-    res.redirect("/clubs");
+    await coachesDB.deleteCoach(req.params.id);
+    res.redirect("/coaches");
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error deleting club");
+    res.status(500).send("Error deleting coach");
   }
 });
 

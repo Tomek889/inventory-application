@@ -23,7 +23,7 @@ clubsRouter.post("/", async (req, res) => {
   try {
     const { name, founded_year, stadium_name, country } = req.body;
     await clubsDB.createClub({ name, founded_year, stadium_name, country });
-    res.redirect("clubs");
+    res.redirect("/clubs");
   } catch (err) {
     console.error(err);
     res.status(500).send("Error creating club");
@@ -54,8 +54,10 @@ clubsRouter.post("/:id", async (req, res) => {
       country: country,
     });
     res.redirect("/clubs");
-  } catch (err) {}
-  res.redirect("/");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error editing club");
+  }
 });
 
 clubsRouter.post("/:id/delete", async (req, res) => {
