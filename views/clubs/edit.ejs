@@ -1,0 +1,48 @@
+<h2>Edit Club</h2>
+<form action="/clubs/<%= club.id %>" method="POST">
+  <div>
+    <label for="name">Club Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= club.name %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="founded_year">Founded Year:</label>
+    <input
+      type="number"
+      id="founded_year"
+      name="founded_year"
+      value="<%= club.founded_year %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="stadium_name">Stadium Name:</label>
+    <input
+      type="text"
+      id="stadium_name"
+      name="stadium_name"
+      value="<%= club.stadium_name %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="country">Country:</label>
+    <input
+      type="text"
+      id="country"
+      name="country"
+      value="<%= club.country %>"
+      required
+    />
+  </div>
+
+  <button type="submit">Save Changes</button>
+</form>
