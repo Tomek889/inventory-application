@@ -12,6 +12,14 @@
 </a>
 <ul class="coachesList">
   <% coaches.forEach(coach => { %>
-  <li><%= coach.name %> — Role: <%= coach.role %> — Age: <%= coach.age %></li>
+  <li>
+    <%= coach.name %> — Role: <%= coach.role %> — Age: <%= coach.age %>
+    <form action="/coaches/<%= coach.id %>/edit" method="get">
+      <button type="submit" class="editBtn">Edit</button>
+    </form>
+    <form action="/coaches/<%= coach.id %>/delete" method="post">
+      <button type="submit" class="deleteBtn">Delete</button>
+    </form>
+  </li>
   <% }) %>
 </ul>

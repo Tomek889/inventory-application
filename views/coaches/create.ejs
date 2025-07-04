@@ -1,0 +1,24 @@
+<h2>Add New Coach</h2>
+<form action="/coaches" method="post">
+  <div>
+    <label for="name">Coach Name:</label>
+    <input type="text" name="name" id="name" required />
+  </div>
+  <div>
+    <label for="role">Role:</label>
+    <input type="text" name="role" id="role" required />
+  </div>
+  <div>
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required />
+  </div>
+  <div>
+    <label for="club_id">Club:</label>
+    <select name="club_id" required>
+      <% clubs.forEach(club => { %>
+      <option value="<%= club.id %>"><%= club.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <button type="submit">Create Coach</button>
+</form>
