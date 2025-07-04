@@ -15,12 +15,14 @@
   <li>
     <%= player.name %> — Position: <%= player.position %> — Age: <%= player.age
     %>
-    <form action="/players/<%= player.id %>/edit" method="get">
-      <button type="submit" class="editBtn">Edit</button>
-    </form>
-    <form action="/players/<%= player.id %>/delete" method="post">
-      <button type="submit" class="deleteBtn">Delete</button>
-    </form>
+    <div class="button-actions">
+      <form action="/players/<%= player.id %>/edit" method="get">
+        <button type="submit" class="editBtn">Edit</button>
+      </form>
+      <form action="/players/<%= player.id %>/delete" method="post">
+        <button type="submit" class="deleteBtn">Delete</button>
+      </form>
+    </div>
   </li>
   <% }) %>
 </ul>

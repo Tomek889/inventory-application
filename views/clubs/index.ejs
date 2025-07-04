@@ -15,12 +15,14 @@
   <li>
     <strong><%= club.name %></strong> — Founded Year: <%= club.founded_year %> —
     Stadium: <%= club.stadium_name %> — Country: <%= club.country %>
-    <form action="/clubs/<%= club.id %>/edit" method="get">
-      <button type="submit" class="editBtn">Edit</button>
-    </form>
-    <form action="/clubs/<%= club.id %>/delete" method="post">
-      <button type="submit" class="deleteBtn">Delete</button>
-    </form>
+    <div class="button-actions">
+      <form action="/clubs/<%= club.id %>/edit" method="get">
+        <button type="submit" class="editBtn">Edit</button>
+      </form>
+      <form action="/clubs/<%= club.id %>/delete" method="post">
+        <button type="submit" class="deleteBtn">Delete</button>
+      </form>
+    </div>
   </li>
   <% }) %>
 </ul>
