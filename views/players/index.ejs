@@ -7,11 +7,20 @@
   Need to add a new player to your team? Just hit the "Add Player" button and
   get started.
 </p>
+<a href="/players/new">
+  <button>Add New Player</button>
+</a>
 <ul class="playersList">
   <% players.forEach(player => { %>
   <li>
     <%= player.name %> — Position: <%= player.position %> — Age: <%= player.age
     %>
+    <form action="/players/<%= player.id %>/edit" method="get">
+      <button type="submit" class="editBtn">Edit</button>
+    </form>
+    <form action="/players/<%= player.id %>/delete" method="post">
+      <button type="submit" class="deleteBtn">Delete</button>
+    </form>
   </li>
   <% }) %>
 </ul>

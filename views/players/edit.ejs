@@ -1,0 +1,48 @@
+<h2>Edit Player</h2>
+<form action="/players/<%= player.id %>" method="POST">
+  <div>
+    <label for="name">Player Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= player.name %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="position">Position:</label>
+    <input
+      type="text"
+      id="position"
+      name="position"
+      value="<%= player.position %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="age">Age:</label>
+    <input
+      type="number"
+      id="age"
+      name="age"
+      value="<%= player.age %>"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="club_id">Club:</label>
+    <select name="club_id" required>
+      <% clubs.forEach(club => { %>
+        <option value="<%= club.id %>" <%= club.id === player.club_id ? 'selected' : '' %>>
+          <%= club.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit">Save Changes</button>
+</form>
